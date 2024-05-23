@@ -3,10 +3,8 @@
 </script>
 
 <template>
-  <div class="container">
-    <div class="px-5">
+    <div class="px-7 bg-primary">
       <NavBar />
     </div>
     <router-view />
-  </div>
 </template>
