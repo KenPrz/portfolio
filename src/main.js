@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
-
+import PrimeVue from 'primevue/config';
+import Lara from './assets/preset';
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
@@ -31,4 +32,8 @@ const router = createRouter({
 })
 createApp(App)
 .use(router)
+.use(PrimeVue, {
+    unstyled: true,
+    pt: Lara       
+})
 .mount('#app')
