@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="px-7 bg-primary">
-      <NavBar />
-    </div>
+  <div class="text-white">
+    <NavBar class="sticky" />
     <router-view />
+  </div>
 </template>

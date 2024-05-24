@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors:{
+        nav: '#121212',
         primary: '#0A192F',
         secondary: '#DB504A',
-        offset: '#FDD400'
-      }
+        offset: '#FDD400',
+        offset_secondary: '#ff8000'
+      },
     },
   },
   plugins: [],
