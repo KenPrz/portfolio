@@ -24,21 +24,3 @@
         </div>
     </main>
 </template>
-<style scoped>
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 2s ease-out forwards;
-}
-
-h1, h2, p {
-    margin: 0;
-}
-</style>
