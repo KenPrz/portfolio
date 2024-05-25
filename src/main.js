@@ -4,6 +4,8 @@ import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
 import PrimeVue from 'primevue/config';
 import Lara from './assets/preset';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import Home from './views/Home.vue'
 import About from './views/About.vue'
@@ -30,6 +32,7 @@ const router = createRouter({
         }
     ]
 })
+AOS.init();
 createApp(App)
 .use(router)
 .use(PrimeVue, {

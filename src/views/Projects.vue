@@ -24,36 +24,38 @@ import { ref } from 'vue';
                         </span>
                     </template>
                     <template #content="slotProps">
-                        <Card class="mt-3">
-                            <template #title class="text-lg sm:text-xl lg:text-2xl">
-                                {{ slotProps.item.name }}
-                            </template>
-                            <template #subtitle class="text-sm sm:text-base lg:text-lg">
-                                {{ slotProps.item.date }}
-                            </template>
-                            
-                            <template #content class="text-sm sm:text-base lg:text-lg">
-                                <p>
-                                    {{ slotProps.item.description }}
-                                </p>
-                                <div class="pt-4">
-                                    <a class="text-offset_secondary hover:text-offset transition-colors duration-200 text-sm sm:text-base lg:text-lg" :href="slotProps.item.link">
-                                        <i class="me-1" :class="slotProps.item.linkIcon"></i> {{ slotProps.item.pathTitle }}
-                                    </a>
-                                </div>
-                            </template>
-                        </Card>
-                        <Accordion :activeIndex="null">
-                            <AccordionTab header="Preview">
-                                <Galleria :value="slotProps.item.images" :numVisible="5"
-                                    :circular="true" :autoplay="true"
-                                    :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="false">
-                                    <template #item="slotProps">
-                                        <Image :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" width="650" />
-                                    </template>
-                                </Galleria>
-                            </AccordionTab>
-                        </Accordion>
+                        <div data-aos="flip-up" data-aos-easing="ease-in-out">
+                            <Card class="mt-3">
+                                <template #title class="text-lg sm:text-xl lg:text-2xl">
+                                    {{ slotProps.item.name }}
+                                </template>
+                                <template #subtitle class="text-sm sm:text-base lg:text-lg">
+                                    {{ slotProps.item.date }}
+                                </template>
+                                
+                                <template #content class="text-sm sm:text-base lg:text-lg">
+                                    <p>
+                                        {{ slotProps.item.description }}
+                                    </p>
+                                    <div class="pt-4">
+                                        <a class="text-offset_secondary hover:text-offset transition-colors duration-200 text-sm sm:text-base lg:text-lg" :href="slotProps.item.link">
+                                            <i class="me-1" :class="slotProps.item.linkIcon"></i> {{ slotProps.item.pathTitle }}
+                                        </a>
+                                    </div>
+                                </template>
+                            </Card>
+                            <Accordion :activeIndex="null">
+                                <AccordionTab header="Preview">
+                                    <Galleria :value="slotProps.item.images" :numVisible="5"
+                                        :circular="true" :autoplay="true"
+                                        :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="false">
+                                        <template #item="slotProps">
+                                            <Image :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" width="650" />
+                                        </template>
+                                    </Galleria>
+                                </AccordionTab>
+                            </Accordion>
+                        </div>
                     </template>
                 </Timeline>
             </div>

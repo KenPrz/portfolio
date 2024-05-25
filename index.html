@@ -5,34 +5,61 @@
     <link rel="icon" type="image/svg+xml" href="/src/assets/profile.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KenPrz</title>
-  <link href="/node_modules/primeicons/primeicons.css" rel="stylesheet">
+    <link href="/node_modules/primeicons/primeicons.css" rel="stylesheet">
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+          width: 5px;
+          height: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 10px;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+      }
+
+      body {
+        background-image: url('./src/assets/tile_background.png');
+        background-repeat: repeat;
+      }
+    </style>
   </head>
-  <body style="background-color: #1E1E1E;">
+  <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script>
+      let posX = 0;
+      let posY = 0;
+      let speedX = 1;
+      let speedY = 1;
+      const step = .02;
+
+      function moveBackground() {
+        posX += speedX * step;
+        posY += speedY * step;
+        if (posX >= window.innerWidth || posX <= 0) {
+          speedX = -speedX;
+        }
+        if (posY >= window.innerHeight || posY <= 0) {
+          speedY = -speedY;
+        }
+
+        document.body.style.backgroundPosition = `${posX}px ${posY}px`;
+        requestAnimationFrame(moveBackground);
+      }
+
+      requestAnimationFrame(moveBackground);
+    </script>
   </body>
 </html>
-<style>
-  /* width */
-  ::-webkit-scrollbar {
-      width: 5px;
-      height: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-      background: #f1f1f1; 
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-      background: #555; 
-  }
-  
-  </style>
