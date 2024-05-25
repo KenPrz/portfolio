@@ -12,7 +12,7 @@
                     <div class="flex flex-col">
                         <p class="text-2xl">Web Developer.</p>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3">p
                         <a href="../assets/cv.pdf" download="Ken_Perez_CV.pdf">
                             <button class="hover:text-offset hover:border-offset transition-colors duration-200 flex items-center justify-center py-1 px-6 border">
                                 <span>Download CV</span>
