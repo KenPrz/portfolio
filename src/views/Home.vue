@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
           <Divider />
         </div>
         <div class="flex w-full space-x-2" :data-aos="'fade-up'" data-aos-delay="350">
-          <a href="#"
+          <a href="mailto:kenperez.dev@gmail.com"
              class="w-1/2 bg-offset text-primary_main px-3 py-1 rounded-lg hover:bg-offset_secondary hover:text-white transition-all duration-500">
             Hire Me
           </a>
