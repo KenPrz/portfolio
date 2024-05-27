@@ -11,6 +11,7 @@ export default {
         primary_main: '#0A192F',
         secondary: '#DB504A',
         offset: '#FDD400',
+        offset_darker: '#E3BE00',
         offset_secondary: '#ff8000',
 
         primary: 'rgb(var(--primary))',

@@ -14,7 +14,7 @@ import { ref } from 'vue';
         <h1 class="ps-4 sm:ps-6 lg:ps-8 pt-10 text-3xl text-center font-semibold">Projects Timeline</h1>
         <Divider />
         <div class="flex justify-center px-4 sm:px-6 lg:px-8 py-8">
-            <div class="card">
+            <div class="card text-xs sm:text-sm md:text-lg font-thin md:font-normal">
                 <Timeline :value="events" align="alternate" class="customized-timeline">
                     <template #marker="slotProps">
                         <span
@@ -24,16 +24,16 @@ import { ref } from 'vue';
                         </span>
                     </template>
                     <template #content="slotProps">
-                        <div data-aos="flip-up" data-aos-easing="ease-in-out">
+                        <div data-aos="flip-up" data-aos-easing="ease-in-out" data-aos-once="true">
                             <Card class="mt-3">
-                                <template #title class="text-lg sm:text-xl lg:text-2xl">
+                                <template #title class="text-md sm:text-xl lg:text-2xl">
                                     {{ slotProps.item.name }}
                                 </template>
-                                <template #subtitle class="text-sm sm:text-base lg:text-lg">
+                                <template #subtitle class="text-xs sm:text-base lg:text-lg">
                                     {{ slotProps.item.date }}
                                 </template>
                                 
-                                <template #content class="text-sm sm:text-base lg:text-lg">
+                                <template #content class="text-xs sm:text-base lg:text-lg">
                                     <p>
                                         {{ slotProps.item.description }}
                                     </p>
