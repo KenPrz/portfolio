@@ -5,8 +5,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 import PrimeVue from 'primevue/config';
 import Lara from './assets/preset';
 import AOS from 'aos';
+import axios from 'axios';
 import 'aos/dist/aos.css';
-
+import 'boxicons';
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Projects from './views/Projects.vue'
@@ -34,6 +35,7 @@ const router = createRouter({
 })
 AOS.init();
 createApp(App)
+.use(axios)
 .use(router)
 .use(PrimeVue, {
     unstyled: true,

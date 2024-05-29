@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import axios from 'axios';
 import Divider from 'primevue/divider';
 
 const logos = ref([
@@ -11,7 +12,7 @@ const logos = ref([
   { src: '/icons/mysql.svg', alt: 'mysql', link: 'https://www.mysql.com/' },
   { src: '/icons/arduino.svg', alt: 'arduino', link: 'https://www.arduino.cc/' },
 ]);
-
+const cv = ref('/cv.pdf');
 var delay = ref(150);
 const githubLink = ref('https://github.com/kenprz');
 const image = ref('/me.jpg');
@@ -19,7 +20,7 @@ const text = ref('a Web Developer ');
 const cursorPosition = ref(text.value.length); // Set cursor position at the end of the text initially
 const maxChars = 50; // Maximum characters allowed
 const isLimitExceeded = ref(false); // Indicates if the character limit is exceeded
-
+const isProfanity = ref(false); // Indicates if the text contains profanity
 const preCursorText = computed(() => text.value.slice(0, cursorPosition.value));
 const postCursorText = computed(() => text.value.slice(cursorPosition.value));
 
@@ -40,6 +41,7 @@ const insertCharacter = (char) => {
     text.value = text.value.slice(0, cursorPosition.value) + char + text.value.slice(cursorPosition.value);
     cursorPosition.value++;
     isLimitExceeded.value = false;
+    checkProfanity(text.value);
   } else {
     isLimitExceeded.value = true;
   }
@@ -50,6 +52,25 @@ const deleteCharacter = () => {
     text.value = text.value.slice(0, cursorPosition.value - 1) + text.value.slice(cursorPosition.value);
     cursorPosition.value--;
     isLimitExceeded.value = false;
+    checkProfanity(text.value);
+  }
+};
+
+const checkProfanity = async (text) => {
+  try {
+    const response = await axios.get('https://www.purgomalum.com/service/containsprofanity', {
+      params: {
+        text: text
+      }
+    });
+    if (response.data === true) {
+      isLimitExceeded.value = true;
+      isProfanity.value = true;
+    }else{
+      isProfanity.value = false;
+    }
+  } catch (error) {
+    console.error('Error checking profanity:', error);
   }
 };
 
@@ -86,18 +107,18 @@ onBeforeUnmount(() => {
 <main class="flex justify-center items-center min-h-screen">
   <div data-aos-once="true" :data-aos="'zoom-in'" data-aos-delay="10" class="flex flex-col items-center text-center animate-fade-in">
     <div class="flex flex-col-reverse md:flex-row items-center space-x-0 md:space-x-4 w-full">
-      <div class="flex flex-col justify-start items-start w-full md:w-1/2 px-4 md:px-0">
+      <div class="flex flex-col md:justify-start md:items-start w-full md:w-1/2 px-4 md:px-0">
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="250" class="text-md font-semibold">Hello!</h1>
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="100" class="text-xl md:text-6xl">I'm <b><a :data-aos="'fade-left'" data-aos-delay="300" class="hover:text-offset transition-colors duration-500" :href="githubLink">Ken</a></b></h1>
         <h1 :class="{'text-red-500': isLimitExceeded, 'shake': isLimitExceeded}" class="py-1 font-light text-lg">
           <b>{{ preCursorText }}</b>
           <span class="cursor font-thin">|</span>
-          <b>{{ postCursorText }}</b>
+          <b>{{ postCursorText }}</b><span v-if="isProfanity" class="py-1 font-light text-lg">(c'mon man, you're better than that...)</span>
         </h1>
         <div class="w-full" data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="300">
-          <p :data-aos="'fade-left'" data-aos-delay="300" class="text-start text-md font-light">
-            <i>"Lorem ipsum dolor sit amet.""</i><br>
-            -Sun Tzu <span class="text-xs">(probably. idk)</span>
+          <p :data-aos="'fade-left'" data-aos-delay="300" class="text-center md:text-start text-md font-light flex flex-col">
+            <span><i>“In the beginning there was Nothing but Nothing is unstable so Something came about.”</i></span>
+            <span class="text-center text-sm md:text-md md:text-start">― Exurb1a, <a href="https://www.goodreads.com/book/show/30137549-the-bridge-to-lucy-dunne" target="_blank" class="text-xs hover:text-offset transition-colors duration-200">The Bridge to Lucy Dunne</a></span>
           </p>
 
           <div class="flex md:justify-start justify-center items-center space-x-2 mt-4">
@@ -126,7 +147,7 @@ onBeforeUnmount(() => {
           </router-link>
         </div>
       </div>
-      <div class="w-full md:w-2/3 px-4 md:px-12">
+      <div class="w-full flex justify-center md:justify-start md:w-2/3 px-4 md:px-12">
         <img :src="image" alt="ken perez" class="w-48 md:w-[500px] h-auto rounded-full">
       </div>
     </div>
