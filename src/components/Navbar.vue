@@ -15,11 +15,11 @@
                 :class="{ 'text-offset': $route.path === '/' }"
                 to="/"> <span class="ease-in duration-200 transition-all hover:text-offset">Home</span>
             </router-link>
-            <!-- <router-link
+            <router-link
                 class="text-md font-light hover:color-offset"
                 :class="{ 'text-offset': $route.path === '/about' }"
                 to="/about"> <span class="ease-in duration-200 transition-all hover:text-offset">About</span>
-            </router-link> -->
+            </router-link>
             <router-link
                 class="text-md font-light hover:color-offset"
                 :class="{ 'text-offset': $route.path === '/projects' }"
