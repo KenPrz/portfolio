@@ -144,7 +144,7 @@ import Image from 'primevue/image';
                                 <a href="https://www.facebook.com/DICTgovph/videos/649421814039078" target="_blank"
                                     class="hover:text-yellow-500 transition-all duration-200">
                                     <box-icon name='link-external' size="xs" color="yellow"></box-icon>
-                                    <span class="ms-1">HackForGov:2 Regionals <span class="text-xs">(participated)</span></span>
+                                    <span class="ms-1">HackForGov:2 Regionals <span class="text-xs">(participant)</span></span>
                                 </a>
                             </li>
                         </ul>
