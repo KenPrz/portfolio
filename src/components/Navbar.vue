@@ -25,9 +25,11 @@
                 :class="{ 'text-offset': $route.path === '/projects' }"
                 to="/projects"> <span class="ease-in duration-200 transition-all hover:text-offset">Projects</span>
             </router-link>
-            <a href="mailto:kenperez.dev@gmail.com" class="text-md font-medium hover:color-offset" target="_blank">
-                <span class="ease-in duration-200 transition-all hover:text-offset">Say Hi!</span>
-            </a>
+            <router-link
+                class="text-md font-light hover:color-offset"
+                :class="{ 'text-offset': $route.path === '/contact' }"
+                to="/contact"> <span class="ease-in duration-200 transition-all hover:text-offset">Say Hi!</span>
+            </router-link>
         </div>
     </nav>
 </template>
