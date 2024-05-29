@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
       <div class="flex flex-col justify-start items-start w-full md:w-1/2 px-4 md:px-0">
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="250" class="text-md font-semibold">Hello!</h1>
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="100" class="text-xl md:text-6xl">I'm <b><a :data-aos="'fade-left'" data-aos-delay="300" class="hover:text-offset transition-colors duration-500" :href="githubLink">Ken</a></b></h1>
-        <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="350" :class="{'text-red-500': isLimitExceeded, 'shake': isLimitExceeded}" class="py-1 font-light text-lg">
+        <h1 :class="{'text-red-500': isLimitExceeded, 'shake': isLimitExceeded}" class="py-1 font-light text-lg">
           <b>{{ preCursorText }}</b>
           <span class="cursor font-thin">|</span>
           <b>{{ postCursorText }}</b>
