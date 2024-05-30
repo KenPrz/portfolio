@@ -141,10 +141,10 @@ onBeforeUnmount(() => {
              class="w-1/2 bg-offset text-primary_main px-3 py-1 rounded-lg hover:bg-offset_secondary hover:text-white transition-all duration-500">
             Hire Me
           </a>
-          <router-link to="/projects"
+          <a href="/cv.pdf" download="Ken Perez CV" target="_blank"
              class="w-1/2 text-offset px-3 py-1 rounded-lg border-offset border-2 hover:bg-offset hover:text-primary_main transition-all duration-500">
-            Portfolio
-          </router-link>
+            Download CV
+          </a>
         </div>
       </div>
       <div class="w-full flex justify-center md:justify-start md:w-2/3 px-4 md:px-12">
