@@ -102,11 +102,10 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown);
 });
 </script>
-
 <template>
-<main class="flex justify-center items-center min-h-screen">
-  <div data-aos-once="true" :data-aos="'zoom-in'" data-aos-delay="10" class="flex flex-col items-center text-center animate-fade-in">
-    <div class="flex flex-col-reverse md:flex-row items-center space-x-0 md:space-x-4 w-full">
+  <main class="flex justify-center items-center min-h-screen">
+  <div data-aos-once="true" :data-aos="'zoom-in'" data-aos-delay="10" class="flex flex-col items-center text-center animate-fade-in w-full max-w-4xl">
+    <div class="flex flex-col-reverse md:flex-row items-center w-full space-y-4 md:space-y-0">
       <div class="flex flex-col md:justify-start md:items-start w-full md:w-1/2 px-4 md:px-0">
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="250" class="text-md font-semibold">Hello!</h1>
         <h1 data-aos-once="true" :data-aos="'fade-left'" data-aos-delay="100" class="text-xl md:text-6xl">I'm <b><a :data-aos="'fade-left'" data-aos-delay="300" class="hover:text-offset transition-colors duration-500" :href="githubLink">Ken</a></b></h1>
@@ -147,12 +146,13 @@ onBeforeUnmount(() => {
           </a>
         </div>
       </div>
-      <div class="w-full flex justify-center md:justify-start md:w-2/3 px-4 md:px-12">
+      <div class="w-full flex justify-center md:justify-start md:w-1/2 px-4 md:px-12">
         <img :src="image" alt="ken perez" class="w-48 md:w-[500px] h-auto rounded-full">
       </div>
     </div>
   </div>
 </main>
+
 </template>
 
 <style scoped>

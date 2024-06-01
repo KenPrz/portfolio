@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="text-white scroll-smooth">
+  <div class="text-white scroll-smooth font-poppins">
     <NavBar class="sticky" />
     <router-view />
   </div>
