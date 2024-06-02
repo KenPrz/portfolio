@@ -13,6 +13,7 @@ export default {
         nav: '#121212',
         primary_main: '#0A192F',
         secondary: '#DB504A',
+        body_color: '#1e1e1e',
         offset: '#FDD400',
         offset_darker: '#E3BE00',
         offset_secondary: '#ff8000',

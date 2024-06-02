@@ -1,70 +1,52 @@
 <script setup>
-import Timeline from 'primevue/timeline';
-import ScrollTop from 'primevue/scrolltop';
-import Divider from 'primevue/divider';
-import Card from 'primevue/card';
-import Accordion from 'primevue/accordion';
-import AccordionTab from 'primevue/accordiontab';
 import Galleria from 'primevue/galleria';
 import Image from 'primevue/image';
+import ScrollTop from 'primevue/scrolltop';
+import Divider from 'primevue/divider';
 import { ref } from 'vue';
 </script>
 <template>
     <div class="animate-fade-in px-10">
-        <h1 class="ps-4 sm:ps-6 lg:ps-8 pt-10 text-3xl text-center font-semibold">Projects Timeline</h1>
-        <Divider />
+        <div class="animate-fade-in px-10">
+        <h1 data-aos="fade-left" :data-aos-delay="delay+100" class="pt-10 text-3xl text-center md:text-start font-semibold">Projects Timeline</h1>
+        <Divider class="bg-white" />
         <div class="flex justify-center px-4 sm:px-6 lg:px-8 py-8">
             <div class="card text-xs sm:text-sm md:text-lg font-thin md:font-normal">
-                <Timeline :value="events" align="alternate" class="customized-timeline">
-                    <template #marker="slotProps">
-                        <span
-                            class="flex w-12 h-12 items-center justify-center text-white rounded-full z-20 shadow-sm"
-                            :style="{ backgroundColor: slotProps.item.color }">
-                            <i :class="slotProps.item.icon"></i>
-                        </span>
-                    </template>
-                    <template #content="slotProps">
-                        <div data-aos="flip-up" data-aos-easing="ease-in-out" data-aos-once="true">
-                            <Card class="mt-3">
-                                <template #title class="text-md sm:text-xl lg:text-2xl">
-                                    {{ slotProps.item.name }}
-                                </template>
-                                <template #subtitle class="text-xs sm:text-base lg:text-lg">
-                                    {{ slotProps.item.date }}
-                                </template>
-                                
-                                <template #content class="text-xs sm:text-base lg:text-lg">
-                                    <p>
-                                        {{ slotProps.item.description }}
-                                    </p>
-                                    <div class="pt-4">
-                                        <a class="text-offset_secondary hover:text-offset transition-colors duration-200 text-sm sm:text-base lg:text-lg" :href="slotProps.item.link">
-                                            <i class="me-1" :class="slotProps.item.linkIcon"></i> {{ slotProps.item.pathTitle }}
-                                        </a>
-                                    </div>
-                                </template>
-                            </Card>
-                            <Accordion :activeIndex="null">
-                                <AccordionTab header="Preview">
-                                    <Galleria :value="slotProps.item.images" :numVisible="5"
-                                        :circular="true" :autoplay="true"
-                                        :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="false">
-                                        <template #item="slotProps">
-                                            <Image :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" width="650" />
-                                        </template>
-                                    </Galleria>
-                                </AccordionTab>
-                            </Accordion>
+                <div v-for="event in events" :key="event.name" class="mb-8" data-aos="fade-up" :data-aos-delay="delay+100">
+                    <div class="flex w-full flex-col md:flex-row">
+                        <div class="flex flex-col w-full md:w-1/2 justify-center">
+                            <div class="flex items-center mb-2">
+                                <h2 data-aos="fade-left" :data-aos-delay="delay+100" class="text-pretty text-xl md:text-4xl font-semibold text-white">{{ event.name }}</h2>
+                            </div>
+                            <div data-aos="fade-left" :data-aos-delay="delay+100" class="font-light text-slate-300 text-sm mb-2">{{ event.date }}</div>
+                            <p data-aos="fade-left" :data-aos-delay="delay+200" class="text-pretty mb-2">{{ event.description }}</p>
+                            <a data-aos="fade-left" :data-aos-delay="delay+250" :href="event.link" class="text-offset hover:text-offset_secondary transition-colors duration-300 flex items-center" target="_blank">
+                                <i :class="event.linkIcon" class="mr-2"></i>{{ event.pathTitle }}
+                            </a>
                         </div>
-                    </template>
-                </Timeline>
+                        <div class="w-full md:w-1/2 px-5 mt-5 md:mt-0">
+                            <Galleria :value="event.images" :numVisible="5"
+                                :circular="true" :autoplay="true"
+                                :showThumbnails="false" 
+                                :showIndicators="true"
+                                :showItemNavigators="true"
+                                :changeItemOnIndicatorHover="false">
+                                <template #item="slotProps">
+                                    <Image :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" width="650" />
+                                </template>
+                            </Galleria>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <ScrollTop />
     </div>
+    </div>
 </template>
 
 <script>
+const delay = ref(150);
 const events = ref([
     {
         name: 'HomeSphere (Final Year Project)',
