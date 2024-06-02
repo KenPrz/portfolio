@@ -3,7 +3,7 @@ import Divider from 'primevue/divider';
 import Image from 'primevue/image';
 </script>
 <template>
-    <div class="animate-fade-in flex flex-col justify-center mt-10 px-6 md:px-12 lg:px-24">
+    <div data-aos="fade-up" class="animate-fade-in flex flex-col justify-center mt-10 px-6 md:px-12 lg:px-24">
         <section data-aos="fade-up" data-aos-delay="250">
             <div class="flex flex-col">
                 <div class="flex flex-col md:flex-row md:px-8 lg:px-32 space-y-3 md:space-y-0 md:space-x-3 items-center">

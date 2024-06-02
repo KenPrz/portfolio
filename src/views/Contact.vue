@@ -28,7 +28,7 @@ const baseDelay = 150; // Base delay value
 </script>
 
 <template>
-  <div class="animate-fade-in flex flex-col justify-center mt-10 px-6 md:px-12 lg:px-24">
+  <div data-aos="fade-up" class="animate-fade-in flex flex-col justify-center mt-10 px-6 md:px-12 lg:px-24">
     <h1 class="text-3xl md:text-4xl font-bold text-center">Let's Get in Touch!</h1>
     <p class="text-center mt-4">Feel free to reach out to me for any queries or collaborations.</p>
     <div class="flex flex-col justify-center items-center mt-8 space-y-4">
