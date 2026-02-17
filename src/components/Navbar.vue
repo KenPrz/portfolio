@@ -9,7 +9,7 @@ const handleScroll = () => {
 };
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
 onBeforeUnmount(() => {
@@ -19,66 +19,85 @@ onBeforeUnmount(() => {
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false;
+};
 </script>
 
 <template>
+  <!-- Desktop + Mobile Nav -->
   <nav :class="[
-      'fixed top-0 w-full px-7 py-4 flex items-center justify-between z-10 transition-all duration-300',
-      isScrolled ? 'bg-surface-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      'fixed top-0 w-full px-6 md:px-10 py-4 flex items-center justify-between z-[100] transition-all duration-500',
+      isScrolled 
+        ? 'bg-dark-950/80 backdrop-blur-xl' 
+        : 'bg-transparent'
     ]">
-    <!-- Logo Section -->
-    <div class="flex items-center">
-      <router-link class="flex items-center group" to="/">
-        <div class="relative overflow-hidden rounded-full border-2 border-primary-400 p-0.5">
-          <img src="../assets/profile.jpg" alt="logo" class="h-10 w-10 rounded-full transition-transform duration-500 group-hover:scale-110" />
-        </div>
-        <h1 class="text-xl font-bold ml-2 bg-gradient-to-r from-white to-primary-300 bg-clip-text text-transparent">
-          KenPrz<span class="text-primary-400">.</span>
-        </h1>
-      </router-link>
-    </div>
+    <!-- Logo -->
+    <router-link to="/" class="flex items-center gap-2 group" @click="closeMobileMenu">
+      <span class="text-xl font-bold font-mono text-white group-hover:text-accent transition-colors duration-300">
+        K<span class="text-accent">.</span>
+      </span>
+    </router-link>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex space-x-10">
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center gap-8">
       <router-link
-        v-for="(item, index) in ['Home', 'About', 'Projects', 'Contact']"
-        :key="index"
+        v-for="item in ['Home', 'About', 'Projects', 'Contact']"
+        :key="item"
         :to="item === 'Home' ? '/' : `/${item.toLowerCase()}`"
-        class="relative text-md font-medium overflow-hidden group"
-        :class="{ 'text-primary-400': $route.path === (item === 'Home' ? '/' : `/${item.toLowerCase()}`) }">
-        <span class="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-          {{ item === 'Contact' ? 'Say Hi!' : item }}
-        </span>
-        <span class="absolute left-0 inline-block translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-primary-400">
-          {{ item === 'Contact' ? 'Say Hi!' : item }}
-        </span>
-        <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+        class="text-sm font-mono text-dark-300 hover:text-accent transition-colors duration-300 link-underline relative"
+        active-class="!text-accent"
+        :class="{ '!text-accent': $route.path === (item === 'Home' ? '/' : `/${item.toLowerCase()}`) }">
+        {{ item }}
       </router-link>
+      
+      <a href="/cv.pdf" download="Ken Perez CV" target="_blank"
+         class="btn-neon btn-neon-outline text-xs py-2 px-4">
+        Resume ↓
+      </a>
     </div>
 
     <!-- Mobile Menu Button -->
-    <button @click="toggleMobileMenu" class="md:hidden text-white focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" :class="{ 'hidden': isMobileMenuOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    <button @click="toggleMobileMenu" class="md:hidden text-dark-200 hover:text-accent transition-colors duration-300 p-1">
+      <!-- Hamburger / Close -->
+      <svg v-if="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="18" x2="20" y2="18" />
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" :class="{ 'hidden': !isMobileMenuOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="6" y1="18" x2="18" y2="6" />
       </svg>
     </button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div v-if="isMobileMenuOpen" class="fixed top-16 left-0 w-full bg-surface-900/95 backdrop-blur-md shadow-lg z-10 md:hidden transform transition-transform duration-300 ease-in-out">
-    <div class="flex flex-col items-center py-4 space-y-4">
-      <router-link
-        v-for="(item, index) in ['Home', 'About', 'Projects', 'Contact']"
-        :key="index"
-        :to="item === 'Home' ? '/' : `/${item.toLowerCase()}`"
-        @click="isMobileMenuOpen = false"
-        class="w-full text-center py-3 text-md font-medium hover:bg-surface-800 transition-colors duration-200"
-        :class="{ 'text-primary-400': $route.path === (item === 'Home' ? '/' : `/${item.toLowerCase()}`) }">
-        {{ item === 'Contact' ? 'Say Hi!' : item }}
-      </router-link>
+  <Transition
+    enter-active-class="transition-all duration-300 ease-out"
+    enter-from-class="opacity-0 -translate-y-4"
+    enter-to-class="opacity-100 translate-y-0"
+    leave-active-class="transition-all duration-200 ease-in"
+    leave-from-class="opacity-100 translate-y-0"
+    leave-to-class="opacity-0 -translate-y-4"
+  >
+    <div v-if="isMobileMenuOpen" class="fixed top-[56px] inset-x-0 bg-dark-950/95 backdrop-blur-xl border-b border-dark-700/50 z-[99] md:hidden">
+      <div class="flex flex-col items-center py-6 gap-4">
+        <router-link
+          v-for="item in ['Home', 'About', 'Projects', 'Contact']"
+          :key="item"
+          :to="item === 'Home' ? '/' : `/${item.toLowerCase()}`"
+          @click="closeMobileMenu"
+          class="text-base font-mono text-dark-300 hover:text-accent transition-colors duration-300 py-2"
+          :class="{ '!text-accent': $route.path === (item === 'Home' ? '/' : `/${item.toLowerCase()}`) }">
+          {{ item }}
+        </router-link>
+        <a href="/cv.pdf" download="Ken Perez CV" target="_blank"
+           class="btn-neon btn-neon-outline text-sm py-2 px-6 mt-2">
+          Resume ↓
+        </a>
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
