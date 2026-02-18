@@ -32,6 +32,56 @@ The platform standardizes every step of the procurement journey:
 Built with a modern tech stack (Vue.js and Laravel), Nexus ensures high performance, scalability, and a seamless user experience. The system emphasizes data integrity, audit trails, and efficient communication between departments to minimize bottlenecks and operational costs.`,
   },
   {
+    id: "mprl-solar-power",
+    name: "ONE MPRL Solar Power",
+    subtitle: "Corporate Company Profile",
+    date: "Jun 2024 — Feb 2025",
+    category: "Web App",
+    color: "#37b34a",
+    description:
+      "A sophisticated company profile website for ONE MPRL Solar Power Corporation, showcasing their renewable energy solutions and corporate vision.",
+    technologies: ["Laravel", "Vue.js", "Inertia.js", "Tailwind CSS", "MySQL"],
+    link: "https://github.com/KenPrz/mprl-site",
+    linkIcon: "github",
+    pathTitle: "View on GitHub",
+    images: [
+      {
+        itemImageSrc: "/images/mprl/onemprl1.png",
+        alt: "MPRL Solar Power Home",
+      },
+      {
+        itemImageSrc: "/images/mprl/onemprl2.png",
+        alt: "MPRL Solar Power Services",
+      },
+      {
+        itemImageSrc: "/images/mprl/onemprl3.png",
+        alt: "MPRL Solar Power Services",
+      },
+      {
+        itemImageSrc: "/images/mprl/onemprl4.png",
+        alt: "MPRL Solar Power Services",
+      },
+      {
+        itemImageSrc: "/images/mprl/onemprl5.png",
+        alt: "MPRL Solar Power Services",
+      },
+      {
+        itemImageSrc: "/images/mprl/onemprl6.png",
+        alt: "MPRL Solar Power Services",
+      },
+    ],
+    longDescription: `ONE MPRL Solar Power Corporation's company profile website is a modern, high-performance web application built to establish a strong digital presence for a leader in the renewable energy sector. 
+
+Originally founded in 2013 as a trusted provider in the Bicol Region, the company has expanded its expertise to NCR, CALABARZON, and surrounding provinces.
+
+Built with Laravel, Vue.js, and Inertia.js, the platform offers:
+• Full-stack integration with seamless Inertia-powered navigation.
+• Showcase of solar products and expert installation services.
+• Custom blog system for posting promotions and updates.
+
+The project demonstrates a commitment to sustainability and modernization through a sleek, high-performing technical implementation using modern tools like Flowbite and AOS.`,
+  },
+  {
     id: "homesphere",
     name: "HomeSphere",
     subtitle: "Final Year Project",
@@ -83,7 +133,7 @@ The project challenged me to integrate knowledge from multiple domains including
     id: "ycrs",
     name: "Youth Card RFID System",
     subtitle: "Community Project",
-    date: "Jan 2024 — present (on hold)",
+    date: "Jan 2024 — Mar 2024",
     category: "Web App",
     color: "#a855f7",
     description:
