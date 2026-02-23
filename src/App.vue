@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import Lenis from 'lenis';
 import NavBar from './components/Navbar.vue';
 
 const scrollProgress = ref(0);
@@ -10,11 +11,36 @@ const updateScrollProgress = () => {
   scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 };
 
+let lenis;
+
 onMounted(() => {
+  // Initialize Lenis
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  // Start the RAF loop
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
 });
 
 onBeforeUnmount(() => {
+  if (lenis) {
+    lenis.destroy();
+  }
   window.removeEventListener('scroll', updateScrollProgress);
 });
 </script>
@@ -42,9 +68,12 @@ onBeforeUnmount(() => {
           &copy; {{ new Date().getFullYear() }} Ken Perez
         </p>
         <div class="flex items-center gap-6">
-          <a href="https://github.com/kenprz" target="_blank" class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">GitHub</a>
-          <a href="https://www.linkedin.com/in/ken-daryl-perez/" target="_blank" class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">LinkedIn</a>
-          <a href="mailto:kenperez.dev@gmail.com" class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">Email</a>
+          <a href="https://github.com/kenprz" target="_blank"
+            class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">GitHub</a>
+          <a href="https://www.linkedin.com/in/ken-daryl-perez/" target="_blank"
+            class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">LinkedIn</a>
+          <a href="mailto:kenperez.dev@gmail.com"
+            class="text-dark-400 hover:text-accent transition-colors duration-300 link-underline text-sm font-mono">Email</a>
         </div>
       </div>
     </footer>

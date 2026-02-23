@@ -228,9 +228,23 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- GitHub Section -->
+    <section id="github" class="reveal mb-24" :class="{ 'active': isInView['github'] }">
+      <span class="section-number">03 // Contributions</span>
+      <h2 class="text-3xl font-bold text-white mt-2 mb-8">GitHub Activity</h2>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <div class="glass-card p-6 xl:col-span-2 flex justify-center items-center overflow-hidden">
+          <img
+            src="https://github-readme-activity-graph.vercel.app/graph?username=kenprz&bg_color=transparent&color=808080&line=ccff00&point=ffffff&area=true&hide_border=true"
+            alt="GitHub Activity Graph" class="w-full" />
+        </div>
+      </div>
+    </section>
+
     <!-- Experience Section -->
     <section id="experience" class="reveal mb-24" :class="{ 'active': isInView['experience'] }">
-      <span class="section-number">03 // Experience</span>
+      <span class="section-number">04 // Experience</span>
       <h2 class="text-3xl font-bold text-white mt-2 mb-8">Work Experience</h2>
 
       <div class="relative pl-8">
@@ -275,7 +289,7 @@ onMounted(() => {
 
     <!-- Education & Certifications Section -->
     <section id="education" class="reveal mb-24" :class="{ 'active': isInView['education'] }">
-      <span class="section-number">04 // Education</span>
+      <span class="section-number">05 // Education</span>
       <h2 class="text-3xl font-bold text-white mt-2 mb-8">Education & Certifications</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

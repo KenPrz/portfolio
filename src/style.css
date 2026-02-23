@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   letter-spacing: -0.01em;
   color: #e0e0e0;
@@ -63,14 +63,18 @@ p {
   background: #ccff00;
   z-index: 10000;
   transition: width 0.1s linear;
-  box-shadow: 0 0 10px #ccff00, 0 0 20px #ccff0060;
+  box-shadow:
+    0 0 10px #ccff00,
+    0 0 20px #ccff0060;
 }
 
 /* ─── Section Animations ───────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.active {
@@ -96,7 +100,11 @@ p {
 
 /* ─── Glass Card ────────────────────────────── */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -106,7 +114,9 @@ p {
 
 .glass-card:hover {
   border-color: #ccff0030;
-  box-shadow: 0 0 30px #ccff0010, 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 0 30px #ccff0010,
+    0 8px 32px rgba(0, 0, 0, 0.4);
   transform: translateY(-4px);
 }
 
@@ -116,7 +126,7 @@ p {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.75rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 8px;
@@ -150,7 +160,7 @@ p {
 
 /* ─── Section Header ────────────────────────── */
 .section-number {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.75rem;
   color: #ccff00;
   text-transform: uppercase;
@@ -194,7 +204,7 @@ p {
 }
 
 .timeline-dot::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 2px;
   border-radius: 50%;
@@ -217,7 +227,9 @@ p {
 
 /* ─── Glow Text ─────────────────────────────── */
 .text-glow {
-  text-shadow: 0 0 20px #ccff0040, 0 0 40px #ccff0020;
+  text-shadow:
+    0 0 20px #ccff0040,
+    0 0 40px #ccff0020;
 }
 
 /* ─── Link Underline Animation ──────────────── */
@@ -226,7 +238,7 @@ p {
 }
 
 .link-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -245,4 +257,26 @@ p {
   .glass-card:hover {
     transform: none;
   }
+}
+
+/* ─── Lenis Smooth Scroll Boilerplate ────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
